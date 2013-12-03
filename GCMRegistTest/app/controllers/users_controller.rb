@@ -63,7 +63,7 @@ class UsersController < ApplicationController
   end
 
   def register
-    reg_id = params[:regid]
+    reg_id = params[:reg_id]
     user_id = params[:user_id]
     name = params[:name]
     @user = User.create(:id => user_id,
