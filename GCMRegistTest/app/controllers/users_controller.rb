@@ -1,3 +1,4 @@
+require 'pp'
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
@@ -11,6 +12,8 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    puts @user.registration_id.class
+    pp @user.registration_id.class
   end
 
   # GET /users/new
@@ -63,7 +66,8 @@ class UsersController < ApplicationController
   end
 
   def register
-    reg_id = params[:reg_id]
+    pp params
+    reg_id = params[:registration_id]
     user_id = params[:user_id]
     name = params[:name]
     @user = User.create(:id => user_id,
