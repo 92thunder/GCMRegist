@@ -12,8 +12,20 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    puts @user.registration_id.class
-    pp @user.registration_id.class
+  end
+
+  def push
+    pp params
+    @user = User.find(params[:id])
+    registration_id = @user.registration_id
+
+    destination = [registration_id]
+    pp GCM.key
+    data = { message: "hello world" }
+
+    GCM.send_notification( destination, data )
+
+    render :json => @user
   end
 
   # GET /users/new
@@ -66,7 +78,6 @@ class UsersController < ApplicationController
   end
 
   def register
-    pp params
     reg_id = params[:registration_id]
     user_id = params[:user_id]
     name = params[:name]

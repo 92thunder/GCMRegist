@@ -1,5 +1,7 @@
 GCMRegistTest::Application.routes.draw do
   resources :users
+  post 'users/push/:id' => 'users#push'
+  get 'users/push/:id' => 'users#push'
   post 'users/register' => 'users#register'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

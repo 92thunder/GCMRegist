@@ -55,12 +55,10 @@ public class DemoActivity extends Activity {
         mDisplay = (TextView) findViewById(R.id.display);
         registerReceiver(mHandleMessageReceiver,
                 new IntentFilter(DISPLAY_MESSAGE_ACTION));
-        
-        // POST to rails server
+
+
         final String regId = GCMRegistrar.getRegistrationId(this);
-        PostMessageTask post = new PostMessageTask();
-        post.execute( regId );
-        
+
         if (regId.equals("")) {
             // Automatically registers application on startup.
             GCMRegistrar.register(this, SENDER_ID);
@@ -101,6 +99,10 @@ public class DemoActivity extends Activity {
                 mRegisterTask.execute(null, null, null);
             }
         }
+
+        // POST to rails server
+        PostMessageTask post = new PostMessageTask();
+        post.execute( regId );
     }
 
     @Override

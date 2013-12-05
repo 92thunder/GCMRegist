@@ -10,5 +10,9 @@
   <%= @user.registration_id %>
 </p>
 
+<p>
+<%= link_to "PUSH!!", :controller => "users", :action => "push", :id => @user.id, remote: true, method: :post %>
+</p>
+
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
